@@ -74,7 +74,7 @@ pipeline {
         always {
             echo 'Archiving reports and artifacts...'
             archiveArtifacts artifacts: 'playwright-report/**', followSymlinks: false
-            archiveArtifacts artifacts: 'downloads/**', followSymlinks: false
+            archiveArtifacts artifacts: '**', followSymlinks: false
             junit 'results.xml'
         }
     }

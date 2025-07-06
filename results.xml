@@ -1,13 +1,13 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="18.829534">
-<testsuite name="transaction.spec.ts" timestamp="2025-07-06T18:35:24.026Z" hostname="Mobile Chrome" tests="1" failures="0" skipped="0" time="17.751" errors="0">
-<testcase name="End-to-End Purchase Flow › should allow a user to register, purchase 3 products, and download the invoice" classname="transaction.spec.ts" time="17.751">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="107.427767">
+<testsuite name="transaction.spec.ts" timestamp="2025-07-06T19:01:45.593Z" hostname="Mobile Chrome" tests="1" failures="0" skipped="0" time="104.516" errors="0">
+<testcase name="End-to-End Purchase Flow › should allow a user to register, purchase 3 products, and download the invoice" classname="transaction.spec.ts" time="104.516">
 <system-out>
 <![CDATA[Item - Price: 500, Quantity: 1, Subtotal: 500
 Item - Price: 400, Quantity: 1, Subtotal: 400
 Item - Price: 1000, Quantity: 1, Subtotal: 1000
 Cart page total: 1900
 Expected: 1900, Found: 1900
-Invoice downloaded to: downloads/invoice-1751826941082.txt
+Invoice downloaded to: invoice-1751828598499.txt
 ]]>
 </system-out>
 </testcase>

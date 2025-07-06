@@ -46,7 +46,7 @@ export class PaymentPage extends BasePage {
         await this.downloadInvoiceButton.click();
         const download = await downloadPromise;
         
-        const downloadPath = path.join('downloads', `invoice-${Date.now()}.txt`);
+        const downloadPath = path.join(`invoice-${Date.now()}.txt`);
         await download.saveAs(downloadPath);
         return downloadPath;
     }
