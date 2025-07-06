@@ -75,7 +75,7 @@ pipeline {
             echo 'Archiving reports and artifacts...'
             archiveArtifacts artifacts: 'playwright-report/**', followSymlinks: false
             archiveArtifacts artifacts: 'downloads/**', followSymlinks: false
-            junit 'playwright-report/results.xml'
+            junit 'results.xml'
         }
     }
 }
