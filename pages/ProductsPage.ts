@@ -2,22 +2,25 @@ import { Page, Locator } from '@playwright/test';
 import { BasePage } from './BasePage';
 
 export class ProductsPage extends BasePage {
-  readonly addToCartButton: Locator;
+  readonly productList: Locator;
+  readonly continueShoppingButton: Locator;
   readonly viewCartButton: Locator;
 
   constructor(page: Page) {
     super(page);
-    this.addToCartButton = page.locator('a[data-product-id]:has-text("Add to cart")').first();
-    this.viewCartButton = page.locator('u:has-text("View Cart")');
+    this.productList = page.locator('.product-image-wrapper');
+    this.continueShoppingButton = page.locator('.modal-footer .btn');
+    this.viewCartButton = page.getByRole('link', { name: 'Cart' });
+
   }
 
-  async navigate() {
-    await this.page.click('a[href="/products"]');
-  }
-
-  async addFirstProductToCart() {
-    await this.addToCartButton.hover();
-    await this.addToCartButton.click();
-    await this.viewCartButton.click();
+  async addProductsToCart(count: number) {
+    const products = await this.productList.all();
+    for (let i = 0; i < count; i++) {
+      await products[i].scrollIntoViewIfNeeded();
+      await products[i].hover();
+      await products[i].locator('.overlay-content a.add-to-cart').click();
+      await this.continueShoppingButton.click();
+    }
   }
 }
