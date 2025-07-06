@@ -33,18 +33,6 @@ pipeline {
             }
         }
 
-        stage('Build TypeScript') {
-            steps {
-                script {
-                    if (isUnix()) {
-                        sh 'npx tsc'
-                    } else {
-                        bat 'npx tsc'
-                    }
-                }
-            }
-        }
-
         stage('Install Playwright Browsers') {
             steps {
                 script {
