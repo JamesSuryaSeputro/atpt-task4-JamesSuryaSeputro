@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'nodeJS' 
+        nodejs 'nodeJS'
     }
 
     triggers {
-        cron('H 2 * * *') // Run every day at 2 AM
+        cron('H 2 * * *')
     }
 
     environment {
@@ -23,29 +23,49 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                echo 'Installing npm dependencies...'
-                sh 'npm install'
+                script {
+                    if (isUnix()) {
+                        sh 'npm install'
+                    } else {
+                        bat 'npm install'
+                    }
+                }
             }
         }
 
         stage('Build TypeScript') {
             steps {
-                echo 'Compiling TypeScript...'
-                sh 'npx tsc'
+                script {
+                    if (isUnix()) {
+                        sh 'npx tsc'
+                    } else {
+                        bat 'npx tsc'
+                    }
+                }
             }
         }
 
         stage('Install Playwright Browsers') {
             steps {
-                echo 'Installing Playwright browsers...'
-                sh 'npx playwright install --with-deps'
+                script {
+                    if (isUnix()) {
+                        sh 'npx playwright install --with-deps'
+                    } else {
+                        bat 'npx playwright install'
+                    }
+                }
             }
         }
 
         stage('Run E2E Purchase Test') {
             steps {
-                echo 'Running Playwright tests...'
-                sh 'npx playwright test tests/transaction.spec.ts --reporter=junit'
+                script {
+                    if (isUnix()) {
+                        sh 'npx playwright test tests/transaction.spec.ts --reporter=junit'
+                    } else {
+                        bat 'npx playwright test tests/transaction.spec.ts --reporter=junit'
+                    }
+                }
             }
         }
     }
