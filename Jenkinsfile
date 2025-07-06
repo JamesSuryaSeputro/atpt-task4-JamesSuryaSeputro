@@ -49,9 +49,9 @@ pipeline {
             steps {
                 script {
                     if (isUnix()) {
-                        sh 'npx playwright test tests/transaction.spec.ts --reporter=junit'
+                        sh 'npx playwright test tests/transaction.spec.ts'
                     } else {
-                        bat 'npx playwright test tests/transaction.spec.ts --reporter=junit'
+                        bat 'npx playwright test tests/transaction.spec.ts'
                     }
                 }
             }
